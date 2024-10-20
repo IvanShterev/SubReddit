@@ -1,5 +1,5 @@
-import './left-sidebar.css'
-
+import './left-sidebar.css';
+import React, { useState } from 'react';
 
 const LeftSidebar = () => {
 
@@ -7,7 +7,7 @@ const LeftSidebar = () => {
         <>
             <div className="left-sidebar-con">
 
-                <nav>
+                <div className='left-sidebar-nav'> 
                     <div className="nav-option">
                         <svg rpl="" fill="currentColor" height="20" icon-name="home-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
                         <path d="m17.71 8.549 1.244.832v8.523a1.05 1.05 0 0 1-1.052 1.046H12.73a.707.707 0 0 1-.708-.707v-4.507c0-.76-1.142-1.474-2.026-1.474-.884 0-2.026.714-2.026 1.474v4.507a.71.71 0 0 1-.703.707H2.098a1.046 1.046 0 0 1-1.052-1.043V9.381l1.244-.835v9.158h4.44v-3.968c0-1.533 1.758-2.72 3.27-2.72s3.27 1.187 3.27 2.72v3.968h4.44V8.549Zm2.04-1.784L10.646.655a1.12 1.12 0 0 0-1.28-.008L.25 6.765l.696 1.036L10 1.721l9.054 6.08.696-1.036Z"></path>
@@ -32,23 +32,59 @@ const LeftSidebar = () => {
                         </svg>
                         <span>All</span>
                     </div>
-                </nav>
-
-                <div className="con-filler">
-                    <img src="./images/Reddit-Logo.png" alt="" className='filler'/>
-                    <img src="./images/Reddit-Logo.png" alt="" className='filler'/>
-                    <img src="./images/Reddit-Logo.png" alt="" className='filler'/>
-                    <img src="./images/Reddit-Logo.png" alt="" className='filler'/>
-                    <img src="./images/Reddit-Logo.png" alt="" className='filler'/>
-                    <img src="./images/Reddit-Logo.png" alt="" className='filler'/>
-                    <img src="./images/Reddit-Logo.png" alt="" className='filler'/>
-                    <img src="./images/Reddit-Logo.png" alt="" className='filler'/>
-                    <img src="./images/Reddit-Logo.png" alt="" className='filler'/>
-                    <img src="./images/Reddit-Logo.png" alt="" className='filler'/>
-                    <img src="./images/Reddit-Logo.png" alt="" className='filler'/>
-                    <img src="./images/Reddit-Logo.png" alt="" className='filler'/>
-                    <img src="./images/Reddit-Logo.png" alt="" className='filler'/>
                 </div>
+
+                <span className='line'></span>
+
+                <div className="custom-feeds">
+                    <div className="custom-feeds-show show-hide-btn" >
+                        <span>CUSTOM FEEDS</span>
+                        <svg className='arrow' rpl="" fill="currentColor" height="20" icon-name="caret-down-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 13.125a.624.624 0 0 1-.442-.183l-5-5 .884-.884L10 11.616l4.558-4.558.884.884-5 5a.624.624 0 0 1-.442.183Z"></path>
+                        </svg>
+                    </div>
+
+                    <div className="add-custom-feeds">
+                        <svg rpl="" fill="currentColor" height="20" icon-name="add-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9.375h-8.375V1h-1.25v8.375H1v1.25h8.375V19h1.25v-8.375H19v-1.25Z"></path>
+                        </svg>
+                        <span>Create a custom feed</span>
+                    </div>
+
+                </div>
+
+                <span className='line'></span>
+
+                <div className="recent-cont">
+                    <div className="show-recent show-hide-btn">
+                        <span>RECENT</span>
+                        <svg className='arrow' rpl="" fill="currentColor" height="20" icon-name="caret-down-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 13.125a.624.624 0 0 1-.442-.183l-5-5 .884-.884L10 11.616l4.558-4.558.884.884-5 5a.624.624 0 0 1-.442.183Z"></path>
+                        </svg>
+                    </div>
+
+                    <div className="recent-icon">
+                        <img class="rounded-icon" src="https://styles.redditmedia.com/t5_2xhvq/styles/communityIcon_8qil7zgp7oh81.png" />
+                        <span>r/AmItheAsshole</span>
+                    </div>
+                </div>
+
+                <span className='line'></span>
+
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
+                <img src="images/Reddit-Logo.png" alt="" className='dummy'/>
 
             </div>
         </>

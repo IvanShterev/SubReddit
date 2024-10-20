@@ -18,10 +18,8 @@
     padding: 10px 17px 10px 17px;
     color: #fff;
     font-size: 15px;
-}
-
-.left-sidebar-con:hover{
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .left-sidebar-con::-webkit-scrollbar {
@@ -35,14 +33,14 @@
 
 /* Nav Start */
 
-.left-sidebar-con nav{
+.left-sidebar-nav{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1px;
     width: 240px;
     height: auto;
-    border-bottom: 1px solid #26282A;
+    margin-bottom: 5px;
 }
 
 .nav-option{
@@ -62,15 +60,75 @@
 
 /* Nav End */
 
+/* Line Start */
+.line{
+    display: block;
+    width: 260px;
+    height: 1px;
+    background-color: #26282A;
+}
+/* Line End */
 
-.con-filler{
-    margin-top: 200px;
+/* Custom Feeds and Recent Start */
+
+.custom-feeds, .recent-cont{
     display: flex;
     flex-direction: column;
+    width: 280px;
+    height: 90px;
+    padding: 10px 17px 10px 17px;
+    margin-bottom: 6px;
 }
 
-.filler{
-    height: 100px;
+.show-hide-btn{
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px 0 10px;
+}
+
+.arrow{
+    width: 20px;
+    height: 20px;
+    transform: rotate(180deg);
+    transform-origin: center;
+}
+
+.show-hide-btn, .add-custom-feeds, .recent-icon{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.add-custom-feeds, .recent-icon{
+    gap: 12px;
+    align-items: center;
+    padding-left: 17px;
+}
+
+.show-hide-btn span{
+    color: #748791;
+}
+
+.show-hide-btn svg{
+    height: 20px;
+    width: 20px;
+}
+
+.show-hide-btn:hover, .add-custom-feeds:hover, 
+.show-recent:hover{
+    background-color: #181C1F;
+    cursor: pointer;
+}
+
+.rounded-icon{
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+}
+/* Custom Feeds and Recent End */
+
+.dummy{
     width: 100px;
-    
+    height: 100px;
 }
