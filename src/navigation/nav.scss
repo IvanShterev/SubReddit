@@ -13,11 +13,13 @@ nav{
     padding-right: 10px;
 }
 
-nav img{
-    height: 100px;
-    margin-bottom: 10px;
-    cursor: pointer;
-}
+nav {
+    img{
+        height: 100px;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+}    
 
 .search{
     width: 550px;
@@ -26,28 +28,34 @@ nav img{
     position: relative;
 }
 
-.search input{
-    width: 100%;
-    height: 45px;
-    border-radius: 20px;
-    padding-left: 40px;
-    background-color: #2A3236;
-    border: none;
-    color: #fff;
+.search {
+    input{
+        width: 100%;
+        height: 45px;
+        border-radius: 20px;
+        padding-left: 40px;
+        background-color: #2A3236;
+        border: none;
+        color: #fff;
+    }
 }
 
-.search input:hover{
-    background-color: #333D42;
+.search {
+    input:hover{
+        background-color: #333D42;
+    }
 }
 
 input::placeholder {
     color: #8BA2AD; 
 }
 
-.search svg{
-    position: absolute;
-    left: 15px;
-    top: 35%;
+.search {
+    svg{
+        position: absolute;
+        left: 15px;
+        top: 35%;
+    }
 }
 
 .tools-nav{
@@ -56,16 +64,20 @@ input::placeholder {
     align-items: center;
 }
 
-.tools-nav img{
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
+.tools-nav {
+    img{
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
 }
 
-.tools-nav svg{
-    cursor: pointer;
-    position: relative;
+.tools-nav {
+    svg{
+        cursor: pointer;
+        position: relative;
+    }
 }
 
 #messages{
