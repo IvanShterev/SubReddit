@@ -225,6 +225,131 @@ const InfoMain = () => {
 
                 <span className='info-line'></span>
 
+                <div className="voting-guide-cont">
+                    <span>VOTING GUIDE</span>
+                    <span>In your top level comment be sure to include one abbreviation for your judgment, i.e.</span>
+                    <span>YTA = You're the Asshole</span>
+                    <span>YWBTA = You Would Be the Asshole</span>
+                    <span>NTA = Not the Asshole (and the other person is)</span>
+                    <span>YWNBTA = You Would Not be the Asshole (and the other person would)</span>
+                    <span>ESH = Everyone Sucks here</span>
+                    <span>NAH = No Assholes here</span>
+                    <span>INFO = Not Enough Info</span>
+                </div>
+
+                <span className='info-line'></span>
+
+                <div className="flair-cont">
+                    <span>FILTER BY FLAIR</span>
+                    <div className="flair-options">
+                        <button id='flair-asshole'>Asshole</button>
+                        <button id='flair-not-asshole'>Not the A-hole</button>
+                        <button id='flair-everyone-sucks'>Everyone Sucks</button>
+                        <button id='flair-not-a-hole-here'>No A-holes here</button>
+                        <button id='flair-ended'>Talk ENDED</button>
+                        <button id='flair-update'>UPDATE</button>
+                        <button id='flair-meta'>META</button>
+                        <button id='flair-live'>Talk LIVE</button>
+                        <button id='flair-open'>Open Forum</button>
+                        <button id='flair-best'>Best of 2022</button>
+                    </div>
+                </div>
+
+                <span className='info-line'></span>
+
+                <div className="related-communities-cont">
+                    <span className='related-communities-title'>RELATED COMMUNITIES</span>
+                    <div className="related-community">
+                        <div className="related-img-text">
+                            <img src="https://styles.redditmedia.com/t5_2h1drm/styles/communityIcon_rl5tuzyrh8nb1.png" />
+                            <div className="related-community-text-con">
+                                <span className='related-top-span'>r/AITAFiltered</span>
+                                <span className='related-bot-span'>134,402 members</span>
+                            </div>
+                        </div>
+                        <button className="related-join">Join</button>
+                    </div>
+
+                    <div className="related-community">
+                        <div className="related-img-text">
+                            <img src="https://styles.redditmedia.com/t5_2h1drm/styles/communityIcon_rl5tuzyrh8nb1.png" />
+                            <div className="related-community-text-con">
+                                <span className='related-top-span'>r/AITAFiltered</span>
+                                <span className='related-bot-span'>134,402 members</span>
+                            </div>
+                        </div>
+                        <button className="related-join">Join</button>
+                    </div>
+
+                    <div className="related-community">
+                        <div className="related-img-text">
+                            <img src="https://styles.redditmedia.com/t5_2h1drm/styles/communityIcon_rl5tuzyrh8nb1.png" />
+                            <div className="related-community-text-con">
+                                <span className='related-top-span'>r/AITAFiltered</span>
+                                <span className='related-bot-span'>134,402 members</span>
+                            </div>
+                        </div>
+                        <button className="related-join">Join</button>
+                    </div>
+
+                    <div className="related-community">
+                        <div className="related-img-text">
+                            <img src="https://styles.redditmedia.com/t5_2h1drm/styles/communityIcon_rl5tuzyrh8nb1.png" />
+                            <div className="related-community-text-con">
+                                <span className='related-top-span'>r/AITAFiltered</span>
+                                <span className='related-bot-span'>134,402 members</span>
+                            </div>
+                        </div>
+                        <button className="related-join">Join</button>
+                    </div>
+
+                    <div className="related-community">
+                        <div className="related-img-text">
+                            <img src="https://styles.redditmedia.com/t5_2h1drm/styles/communityIcon_rl5tuzyrh8nb1.png" />
+                            <div className="related-community-text-con">
+                                <span className='related-top-span'>r/AITAFiltered</span>
+                                <span className='related-bot-span'>134,402 members</span>
+                            </div>
+                        </div>
+                        <button className="related-join">Join</button>
+                    </div>
+
+                    <div className="related-community">
+                        <div className="related-img-text">
+                            <img src="https://styles.redditmedia.com/t5_2h1drm/styles/communityIcon_rl5tuzyrh8nb1.png" />
+                            <div className="related-community-text-con">
+                                <span className='related-top-span'>r/AITAFiltered</span>
+                                <span className='related-bot-span'>134,402 members</span>
+                            </div>
+                        </div>
+                        <button className="related-join">Join</button>
+                    </div>
+
+                    <div className="related-community">
+                        <div className="related-img-text">
+                            <img src="https://styles.redditmedia.com/t5_2h1drm/styles/communityIcon_rl5tuzyrh8nb1.png" />
+                            <div className="related-community-text-con">
+                                <span className='related-top-span'>r/AITAFiltered</span>
+                                <span className='related-bot-span'>134,402 members</span>
+                            </div>
+                        </div>
+                        <button className="related-join">Join</button>
+                    </div>
+
+                    <div className="related-community">
+                        <div className="related-img-text">
+                            <img src="https://styles.redditmedia.com/t5_2h1drm/styles/communityIcon_rl5tuzyrh8nb1.png" />
+                            <div className="related-community-text-con">
+                                <span className='related-top-span'>r/AITAFiltered</span>
+                                <span className='related-bot-span'>134,402 members</span>
+                            </div>
+                        </div>
+                        <button className="related-join">Join</button>
+                    </div>
+                </div>
+
+                <span className='info-line'></span>
+
             </div>
         </>
     )

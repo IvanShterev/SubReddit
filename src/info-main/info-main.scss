@@ -6,7 +6,7 @@
 
 .info-cont{
     width: 300px;
-    height: 3788px;
+    height: 2305px;
     background-color: #090706;
     overflow-y: hidden;
     overflow-x: hidden;
@@ -22,6 +22,7 @@
 
 .info-cont::-webkit-scrollbar {
     width: 7px;
+    height: 10px;
 }
   
 .info-cont::-webkit-scrollbar-thumb {
@@ -197,3 +198,136 @@
     cursor: pointer;
 }
 
+.voting-guide-cont{
+    display: flex;
+    flex-direction: column;
+    color: #9f8e80;
+    padding-left: 12px;
+    padding-top: 8px;
+    gap: 17px;
+    font-size: 15px;
+}
+
+.flair-cont{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-left: 12px;
+    padding-top: 8px;
+    span{
+        color: #9f8e80;
+        font-size: 15px;
+    }
+    button{
+        border-radius: 20px;
+        padding: 8px 10px;
+        border: none;
+    }
+}
+
+.flair-options{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#flair-asshole{
+    color: #fff;
+    background-color: #B8001F;
+}
+
+#flair-not-asshole{
+    background-color: #7193FF;
+    color: #fff;
+}
+
+#flair-everyone-sucks{
+    color: #fff;
+    background-color: #CC3600;
+}
+
+#flair-not-a-hole-here{
+    color: #fff; 
+    background-color: #00FF99;
+}
+
+#flair-ended{
+    color: #fff;
+    background-color: #CC8B00;
+}
+
+#flair-update, #flair-meta, #flair-open, #flair-best{
+    color: black;
+    background-color: #FFD635;
+}
+
+#flair-live{
+    color: #fff;
+    background-color: #FF4500;
+}
+
+.related-communities-cont{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 12px;
+    padding-top: 8px;
+}
+
+.related-communities-title{
+    font-size: 15px;
+    color: #9f8e80;
+}
+
+.related-community{
+    display: flex;
+    padding: 5px 18px 5px 5px;
+    width: 100%;
+    justify-content: space-between;
+    img{
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.related-community-text-con{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+}
+
+.related-img-text{
+    display: flex;
+    gap: 5px;
+}
+
+.related-join{
+    border-radius: 20px;
+    background-color: #342E29;
+    color: #fff;
+    padding: 8px 13px 8px 13px;
+    border: none;
+    display: none;
+    cursor: pointer;
+}
+
+.related-community:hover .related-join {
+    display: inline-block;
+}
+
+.related-top-span{
+    color: #d2bfb0;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.related-top-span:hover{
+    text-decoration: underline;
+}
+
+.related-bot-span{
+    color: #9f8e80;
+    font-size: 13px;
+}
