@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import './main-content.scss';
 import InfoMain from '../info-main/info-main';
-import CreatePost from '../create-post/create-post';
 
 const MainContent = () => {
     const [allPosts, setAllPosts] = useState(
@@ -20,9 +19,31 @@ const MainContent = () => {
     );
 
     const mainContentRef = useRef(null);
+    const toDisplayCreatePost = useRef(null);
+    const titlePostInput = useRef(null);
+    const bodyPostInput = useRef(null);
 
     const createPostFunc = () => {
         mainContentRef.current.style.display = 'none';
+        toDisplayCreatePost.current.style.display = 'flex';
+    }
+
+    const revertBackMain = () => {
+        mainContentRef.current.style.display = 'flex';
+        toDisplayCreatePost.current.style.display = 'none';
+        const newPost = {
+            id: allPosts.length,
+            photo: 'https://preview.redd.it/snoovatar/avatars/90591e42-6005-48c9-939d-8121e0e8075d-headshot.png?width=128&height=128&crop=smart&auto=webp&s=dee084379a294f19316d0d737281fbba1ed4e5ab',
+            name: 'u/GiggaBasedTop',
+            posted: 0,
+            postTitle: titlePostInput.current.value,
+            post: bodyPostInput.current.value,
+            likes: 0,
+            comments: 0,
+            liked: false,
+            disliked: false
+        };
+        setAllPosts([newPost, ...allPosts]);
     }
 
     const increaseLikes = (id) => {
@@ -92,6 +113,24 @@ const MainContent = () => {
 
     return (
         <>
+            <div className="create-post-cont" ref={toDisplayCreatePost}>
+                <h2>Create post</h2>
+
+                <div className="subreddit-btn">
+                    <img src="https://styles.redditmedia.com/t5_2xhvq/styles/communityIcon_8qil7zgp7oh81.png" alt="r/AmItheAsshole icon" class="mb-0 shreddit-subreddit-icon__icon rounded-full overflow-hidden nd:visible nd:bg-secondary-background " width="24" height="24" loading="lazy" />  
+                    <span>r/AmItheAsshole</span>
+                    <svg rpl="" class="ml-xs" fill="currentColor" height="20" icon-name="caret-down-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 13.125a.624.624 0 0 1-.442-.183l-5-5 .884-.884L10 11.616l4.558-4.558.884.884-5 5a.624.624 0 0 1-.442.183Z"></path>
+                    </svg>
+                </div>
+
+                <input type="text" ref={titlePostInput} placeholder='Title' id='title-input-post'/>
+
+                <input type="text" ref={bodyPostInput} placeholder='Body' id='body-input-post'/>
+
+                <button id='post-btn' onClick={revertBackMain}>Post</button>
+            </div>
+
             <div className="main-content-con" ref={mainContentRef}>
                 <div className="img-cont"></div>
 
@@ -160,9 +199,15 @@ const MainContent = () => {
                                             </span>
                                             {post.likes}
                                             <span className='span-dislike' onClick={() => decreaseLikes(post.id)}>
-                                                <svg className='post-footer-dislike' rpl="" fill="currentColor" height="16" icon-name="downvote-outline" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M10 20a1.122 1.122 0 0 1-.834-.372l-7.872-8.581A1.251 1.251 0 0 1 1.118 9.7 1.114 1.114 0 0 1 2.123 9H6V2.123A1.125 1.125 0 0 1 7.123 1h5.754A1.125 1.125 0 0 1 14 2.123V9h3.874a1.114 1.114 0 0 1 1.007.7 1.25 1.25 0 0 1-.171 1.345l-7.876 8.589A1.128 1.128 0 0 1 10 20Zm-7.684-9.75L10 18.69l7.741-8.44H12.75v-8h-5.5v8H2.316Zm15.469-.05c-.01 0-.014.007-.012.013l.012-.013Z"></path>
-                                                </svg>
+                                                {post.disliked ? 
+                                                    <svg rpl="" fill="currentColor" height="16" icon-name="downvote-fill" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M10 1c.072 0 .145 0 .218.006A4.1 4.1 0 0 1 14 5.184V9h3.138a1.751 1.751 0 0 1 1.234 2.993L10.59 19.72a.836.836 0 0 1-1.18 0l-7.782-7.727A1.751 1.751 0 0 1 2.861 9H6V5.118a4.134 4.134 0 0 1 .854-2.592A3.99 3.99 0 0 1 10 1Z"></path>
+                                                    </svg>
+                                                  :
+                                                    <svg className='post-footer-dislike' rpl="" fill="currentColor" height="16" icon-name="downvote-outline" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M10 20a1.122 1.122 0 0 1-.834-.372l-7.872-8.581A1.251 1.251 0 0 1 1.118 9.7 1.114 1.114 0 0 1 2.123 9H6V2.123A1.125 1.125 0 0 1 7.123 1h5.754A1.125 1.125 0 0 1 14 2.123V9h3.874a1.114 1.114 0 0 1 1.007.7 1.25 1.25 0 0 1-.171 1.345l-7.876 8.589A1.128 1.128 0 0 1 10 20Zm-7.684-9.75L10 18.69l7.741-8.44H12.75v-8h-5.5v8H2.316Zm15.469-.05c-.01 0-.014.007-.012.013l.012-.013Z"></path>
+                                                    </svg>
+                                                }
                                             </span>
                                         </span>
 
