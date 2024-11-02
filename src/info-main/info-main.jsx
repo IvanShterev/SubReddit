@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './info-main.scss';
 
 const InfoMain = () => {
 

@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import './main-content.scss';
 import InfoMain from '../info-main/info-main';
 
 const MainContent = () => {
@@ -29,21 +28,23 @@ const MainContent = () => {
     }
 
     const revertBackMain = () => {
-        mainContentRef.current.style.display = 'flex';
-        toDisplayCreatePost.current.style.display = 'none';
-        const newPost = {
-            id: allPosts.length,
-            photo: 'https://preview.redd.it/snoovatar/avatars/90591e42-6005-48c9-939d-8121e0e8075d-headshot.png?width=128&height=128&crop=smart&auto=webp&s=dee084379a294f19316d0d737281fbba1ed4e5ab',
-            name: 'u/GiggaBasedTop',
-            posted: 0,
-            postTitle: titlePostInput.current.value,
-            post: bodyPostInput.current.value,
-            likes: 0,
-            comments: 0,
-            liked: false,
-            disliked: false
-        };
-        setAllPosts([newPost, ...allPosts]);
+        if(titlePostInput.current.value && bodyPostInput.current.value){
+            mainContentRef.current.style.display = 'flex';
+            toDisplayCreatePost.current.style.display = 'none';
+            const newPost = {
+                id: allPosts.length,
+                photo: 'https://preview.redd.it/snoovatar/avatars/90591e42-6005-48c9-939d-8121e0e8075d-headshot.png?width=128&height=128&crop=smart&auto=webp&s=dee084379a294f19316d0d737281fbba1ed4e5ab',
+                name: 'u/GiggaBasedTop',
+                posted: 0,
+                postTitle: titlePostInput.current.value,
+                post: bodyPostInput.current.value,
+                likes: 0,
+                comments: 0,
+                liked: false,
+                disliked: false
+            };
+            setAllPosts([newPost, ...allPosts]);
+        }
     }
 
     const increaseLikes = (id) => {
@@ -61,10 +62,9 @@ const MainContent = () => {
                         newLikes = post.likes + 1;
                         if(post.disliked){
                             dislikedState = false;
+                            newLikes++;
                         }
-                        else{
-                            likedState = true;
-                        }
+                        likedState = true;
                     }
                     return {
                         ...post,
@@ -93,10 +93,9 @@ const MainContent = () => {
                         newLikes = post.likes - 1;
                         if(post.liked){
                             likedState = false;
+                            newLikes--;
                         }
-                        else{
-                            dislikedState = true;
-                        }
+                        dislikedState = true;
                     }
                     return {
                         ...post,
@@ -141,8 +140,8 @@ const MainContent = () => {
                         <span>r/AmItheAsshole</span>
                     </div>
 
-                    <div className="create-post-right" onClick={createPostFunc}>
-                        <a href="#" className='create-post-long'>
+                    <div className="create-post-right">
+                        <a href="#" className='create-post-long' onClick={createPostFunc}>
                            <svg rpl="" className='create-post-cross' fill="currentColor" height="20" icon-name="add-outline" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19 9.375h-8.375V1h-1.25v8.375H1v1.25h8.375V19h1.25v-8.375H19v-1.25Z"></path>
                             </svg>

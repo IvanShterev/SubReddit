@@ -1,4 +1,3 @@
-import './left-sidebar.scss';
 import React, { useState } from 'react';
 
 const LeftSidebar = () => {
