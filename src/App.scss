@@ -1083,3 +1083,18 @@ footer{
     color: #9f8e80;
     font-size: 13px;
 }
+
+.comments-section{
+    position: absolute;
+    top: 40px;
+    left: 350px;
+    display: flex;
+    background-color: #01A816;
+    flex-direction: column;
+    button{
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        background-color: #01A816;
+    }
+}

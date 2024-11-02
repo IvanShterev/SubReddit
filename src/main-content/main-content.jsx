@@ -23,8 +23,8 @@ const MainContent = () => {
             }))
         }))
     );
-
-    const [showCommentsPost, setShowCommentsPost] = useState(false);
+    
+    const [commentsOpenPostId, setCommentsOpenPostId] = useState(null);
     const [showCreatePost, setShowCreatePost] = useState(false);
     const [titlePostInput, setTitlePostInput] = useState('');
     const [bodyPostInput, setBodyPostInput] = useState('');
@@ -113,7 +113,7 @@ const MainContent = () => {
 
     return (
         <>
-            {showCreatePost ? (
+            {showCreatePost && !commentsOpenPostId ? (
                 <div className="create-post-cont">
                     <h2>Create post</h2>
                     <div className="subreddit-btn">
@@ -157,7 +157,10 @@ const MainContent = () => {
                         Post
                     </button>
                 </div>
-            ) : (
+            ) : ''
+            } 
+            
+            {!showCreatePost && !commentsOpenPostId ? (
                 <div className="main-content-con">
                     <div className="img-cont"></div>
                     <div className="create-post-con">
@@ -296,8 +299,11 @@ const MainContent = () => {
                                                     )}
                                                 </span>
                                             </span>
-
-                                            <span className="post-footer-long post-footer-hover">
+                                                        {console.log(post.id)}
+                                            <span className="post-footer-long post-footer-hover" onClick={(event) => { 
+                                                event.preventDefault(); 
+                                                setCommentsOpenPostId(post.id);
+                                            }}>
                                                 <svg
                                                     className="post-footer-comment"
                                                     rpl=""
@@ -354,7 +360,33 @@ const MainContent = () => {
                         <InfoMain />
                     </div>
                 </div>
-            )}
+            ): ''}
+
+            {commentsOpenPostId ? (
+                <div className="comments-section">
+                    <button onClick={() => setCommentsOpenPostId(null)}>
+                        <svg rpl="" fill="currentColor" icon-name="back-outline" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9.375H2.51l7.932-7.933-.884-.884-9 9a.625.625 0 0 0 0 .884l9 9 .884-.884-7.933-7.933H19v-1.25Z"></path>
+                        </svg>
+                    </button>
+                    {allPosts
+                        .find((post) => post.id === commentsOpenPostId) 
+                        .comments_arr.map((comment) => (
+                            <>
+                                <div key={post.id} className="comment-highlighted">
+                                    <div className="comment-high-top">
+                                        <img src={post.photo}/>
+                                        <span>{post.name}</span>
+                                        <span>{post.posted}</span>
+                                    </div>
+                                    <span>{post.postTitle}</span>
+                                    <p>{post.post}</p>
+                                </div>
+                            </>
+                        ))}
+                </div>
+            ) : ''
+            }
         </>
     );
 };
