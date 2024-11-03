@@ -11,10 +11,9 @@ const MainContent = () => {
             postTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             post: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?',
             likes: 500,
-            comments: 200,
             liked: false,
             disliked: false,
-            comments_arr: Array.from({ length: 10 }, (_, index2) => ({
+            commentsArr: Array.from({ length: Math.random() * 100 }, (_, index2) => ({
                 id: index2,
                 photo: 'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_6.png',
                 name: 'u/Exhausted-fiance',
@@ -24,10 +23,11 @@ const MainContent = () => {
         }))
     );
     
-    const [commentsOpenPostId, setCommentsOpenPostId] = useState(null);
     const [showCreatePost, setShowCreatePost] = useState(false);
     const [titlePostInput, setTitlePostInput] = useState('');
     const [bodyPostInput, setBodyPostInput] = useState('');
+
+    const [selectedPost, setSelectedPost] = useState(null);
 
     const makePost = () => {
         if (titlePostInput != '' && bodyPostInput != '') {
@@ -39,10 +39,9 @@ const MainContent = () => {
                 postTitle: titlePostInput,
                 post: bodyPostInput,
                 likes: 0,
-                comments: 0,
                 liked: false,
                 disliked: false,
-                comments_arr: []
+                commentsArr: []
             };
             setAllPosts([newPost, ...allPosts]);
             setShowCreatePost(false);
@@ -113,7 +112,7 @@ const MainContent = () => {
 
     return (
         <>
-            {showCreatePost && !commentsOpenPostId ? (
+            {showCreatePost && !selectedPost && (
                 <div className="create-post-cont">
                     <h2>Create post</h2>
                     <div className="subreddit-btn">
@@ -157,10 +156,9 @@ const MainContent = () => {
                         Post
                     </button>
                 </div>
-            ) : ''
-            } 
+            )} 
             
-            {!showCreatePost && !commentsOpenPostId ? (
+            {!showCreatePost && !selectedPost && (
                 <div className="main-content-con">
                     <div className="img-cont"></div>
                     <div className="create-post-con">
@@ -220,7 +218,9 @@ const MainContent = () => {
                             {allPosts.map((post) => (
                                 <React.Fragment key={post.id}>
                                     <span className="line"></span>
-                                    <div className="post">
+                                    <div className="post" onClick={() => {
+                                                setSelectedPost(post);
+                                            }}>
                                         <div className="post-header">
                                             <div className="post-header-left">
                                                 <img src={post.photo} alt="User Avatar" />
@@ -299,10 +299,9 @@ const MainContent = () => {
                                                     )}
                                                 </span>
                                             </span>
-                                                        {console.log(post.id)}
-                                            <span className="post-footer-long post-footer-hover" onClick={(event) => { 
-                                                event.preventDefault(); 
-                                                setCommentsOpenPostId(post.id);
+                                            
+                                            <span className="post-footer-long post-footer-hover" onClick={() => {
+                                                setSelectedPost(post);
                                             }}>
                                                 <svg
                                                     className="post-footer-comment"
@@ -317,7 +316,7 @@ const MainContent = () => {
                                                 >
                                                     <path d="M7.725 19.872a.718.718 0 0 1-.607-.328.725.725 0 0 1-.118-.397V16H3.625A2.63 2.63 0 0 1 1 13.375v-9.75A2.629 2.629 0 0 1 3.625 1h12.75A2.63 2.63 0 0 1 19 3.625v9.75A2.63 2.63 0 0 1 16.375 16h-4.161l-4 3.681a.725.725 0 0 1-.489.191ZM3.625 2.25A1.377 1.377 0 0 0 2.25 3.625v9.75a1.377 1.377 0 0 0 1.375 1.375h4a.625.625 0 0 1 .625.625v2.575l3.3-3.035a.628.628 0 0 1 .424-.165h4.4a1.377 1.377 0 0 0 1.375-1.375v-9.75a1.377 1.377 0 0 0-1.374-1.375H3.625Z"></path>
                                                 </svg>
-                                                {post.comments}
+                                                {post.commentsArr.length}
                                             </span>
 
                                             <span className="post-footer-long ribbon post-footer-hover">
@@ -360,33 +359,29 @@ const MainContent = () => {
                         <InfoMain />
                     </div>
                 </div>
-            ): ''}
+            )}
 
-            {commentsOpenPostId ? (
+            {selectedPost && (
                 <div className="comments-section">
-                    <button onClick={() => setCommentsOpenPostId(null)}>
+                    <button onClick={() => setSelectedPost(null)}>
                         <svg rpl="" fill="currentColor" icon-name="back-outline" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 9.375H2.51l7.932-7.933-.884-.884-9 9a.625.625 0 0 0 0 .884l9 9 .884-.884-7.933-7.933H19v-1.25Z"></path>
                         </svg>
                     </button>
-                    {allPosts
-                        .find((post) => post.id === commentsOpenPostId) 
-                        .comments_arr.map((comment) => (
-                            <>
-                                <div key={post.id} className="comment-highlighted">
-                                    <div className="comment-high-top">
-                                        <img src={post.photo}/>
-                                        <span>{post.name}</span>
-                                        <span>{post.posted}</span>
-                                    </div>
-                                    <span>{post.postTitle}</span>
-                                    <p>{post.post}</p>
-                                </div>
-                            </>
-                        ))}
+                    <div key={selectedPost.id} className="comment-highlighted" style={{color: "white"}}>
+                        <div className="comment-high-top">
+                            <img src={selectedPost.photo}/>
+                            <span>{selectedPost.name}</span>
+                            <span>{selectedPost.posted}</span>
+                        </div>
+                        <span>{selectedPost.postTitle}</span>
+                        <p>{selectedPost.post}</p>
+                    </div>
+                    {selectedPost.commentsArr.map((commentObject) => (
+                        <div style={{color: 'white'}}>{commentObject.comment}</div>
+                    ))}
                 </div>
-            ) : ''
-            }
+            )}
         </>
     );
 };
