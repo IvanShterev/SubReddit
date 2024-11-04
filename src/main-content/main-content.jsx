@@ -26,8 +26,9 @@ const MainContent = () => {
     const [showCreatePost, setShowCreatePost] = useState(false);
     const [titlePostInput, setTitlePostInput] = useState('');
     const [bodyPostInput, setBodyPostInput] = useState('');
-
     const [selectedPost, setSelectedPost] = useState(null);
+    const [addingComment, setAddingComment] = useState(false);
+    const [commentInput, setCommentInput] = useState('');
 
     const makePost = () => {
         if (titlePostInput != '' && bodyPostInput != '') {
@@ -49,6 +50,27 @@ const MainContent = () => {
             setBodyPostInput('');
         }
     };
+
+    const makeComment = (selectedPost) => {
+        if(commentInput != ''){
+            const newComment = {
+                id: selectedPost.commentsArr.length,
+                photo: 'https://preview.redd.it/snoovatar/avatars/90591e42-6005-48c9-939d-8121e0e8075d-headshot.png?width=128&height=128&crop=smart&auto=webp&s=dee084379a294f19316d0d737281fbba1ed4e5ab',
+                name: 'u/GiggaBasedTop',
+                posted: 0,
+                comment: commentInput
+            }
+            setAllPosts((prevPosts) =>
+            prevPosts.map((post) =>
+                post.id === selectedPost.id
+                    ? { ...post, commentsArr: [...post.commentsArr, newComment] }
+                    : post
+                )
+            );
+            setAddingComment(false);
+            setCommentInput('');
+        }
+    }
 
     const increaseLikes = (id) => {
         setAllPosts((prevPosts) =>
@@ -363,22 +385,36 @@ const MainContent = () => {
 
             {selectedPost && (
                 <div className="comments-section">
-                    <button onClick={() => setSelectedPost(null)}>
+                    <button className='return-back-comment' onClick={() => setSelectedPost(null)}>
                         <svg rpl="" fill="currentColor" icon-name="back-outline" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 9.375H2.51l7.932-7.933-.884-.884-9 9a.625.625 0 0 0 0 .884l9 9 .884-.884-7.933-7.933H19v-1.25Z"></path>
                         </svg>
                     </button>
-                    <div key={selectedPost.id} className="comment-highlighted" style={{color: "white"}}>
+                    <div key={selectedPost.id} className="comment-highlighted">
                         <div className="comment-high-top">
                             <img src={selectedPost.photo}/>
                             <span>{selectedPost.name}</span>
-                            <span>{selectedPost.posted}</span>
+                            <span>{selectedPost.posted} hrs. ago</span>
                         </div>
-                        <span>{selectedPost.postTitle}</span>
+                        <span id='title-highlighted-comment'>{selectedPost.postTitle}</span>
                         <p>{selectedPost.post}</p>
                     </div>
-                    {selectedPost.commentsArr.map((commentObject) => (
-                        <div style={{color: 'white'}}>{commentObject.comment}</div>
+
+                    <input type="text" id="add-comment-input" placeholder='Add a comment' onChange={(e) => setCommentInput(e.target.value)} onClick={() => setAddingComment(true)} />
+                    {addingComment ? <div className='adding-comment-div'>
+                        <button id='cancel-btn' onClick={() => setAddingComment(false)}>Cancel</button>
+                        <button id='add-comment-btn' onClick={() => makeComment(selectedPost)}>Comment</button>
+                    </div> : ''}
+
+                    {selectedPost.commentsArr.slice().reverse().map((commentObject) => (
+                        <div className='commented-cont'>
+                            <div className="commented-cont-top">
+                                <img src={commentObject.photo}/>
+                                <span style={{ color: "#fff" }}>{commentObject.name}</span>
+                                <span style={{ color: "#d2bfb0" }}>{commentObject.posted} hrs ago</span>
+                            </div>
+                            <p style={{ color: "#fff" }}>{commentObject.comment}</p>
+                        </div>
                     ))}
                 </div>
             )}
