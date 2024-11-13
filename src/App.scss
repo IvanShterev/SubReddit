@@ -1143,7 +1143,15 @@ footer{
 .commented-cont{
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    padding: 15px;
     margin-bottom: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.commented-cont:hover{
+    background-color: #201C18;
 }
 
 .commented-cont-top{
@@ -1195,4 +1203,69 @@ footer{
 
 #add-comment-btn:hover{
     background-color: #a88d5b; 
+}
+
+.delete-comment-btn{
+    border-radius: 20px;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    align-self: flex-end;
+    margin-right: 50px;
+    background-color: #a88d5b;
+}
+
+@media (max-width: 1200px) {
+    .main-content-con,
+    .create-post-con,
+    .post-footer-long,
+    .post-body h3,
+    .post-body p,
+    .post-footer {
+        gap: 5px;
+        padding: 0 5px;
+    }
+
+    .create-post-right {
+        gap: 5px;
+    }
+}
+
+@media (max-width: 992px) {
+    .left-sidebar-con {
+        display: none;
+    }
+
+    .main-content-con {
+        left: 50px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .info-cont {
+        display: none;
+    }
+
+    .main-content-con {
+        width: calc(100% - 40px);
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    nav .create-post-left span {
+        display: none;
+    }
+
+    nav {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .search {
+        width: 100%;
+    }
 }

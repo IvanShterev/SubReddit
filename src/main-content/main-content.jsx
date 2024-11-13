@@ -29,6 +29,7 @@ const MainContent = () => {
     const [selectedPost, setSelectedPost] = useState(null);
     const [addingComment, setAddingComment] = useState(false);
     const [commentInput, setCommentInput] = useState('');
+    const [showDeleteButton, setShowDeleteButton] = useState(null);
 
     const makePost = () => {
         if (titlePostInput != '' && bodyPostInput != '') {
@@ -52,25 +53,49 @@ const MainContent = () => {
     };
 
     const makeComment = (selectedPost) => {
-        if(commentInput != ''){
+        if (commentInput !== '') {
             const newComment = {
                 id: selectedPost.commentsArr.length,
                 photo: 'https://preview.redd.it/snoovatar/avatars/90591e42-6005-48c9-939d-8121e0e8075d-headshot.png?width=128&height=128&crop=smart&auto=webp&s=dee084379a294f19316d0d737281fbba1ed4e5ab',
                 name: 'u/GiggaBasedTop',
                 posted: 0,
                 comment: commentInput
-            }
+            };
+
             setAllPosts((prevPosts) =>
-            prevPosts.map((post) =>
-                post.id === selectedPost.id
-                    ? { ...post, commentsArr: [...post.commentsArr, newComment] }
-                    : post
+                prevPosts.map((post) =>
+                    post.id === selectedPost.id
+                        ? { ...post, commentsArr: [...post.commentsArr, newComment] }
+                        : post
                 )
             );
+
+            setSelectedPost((prevPost) => ({
+                ...prevPost,
+                commentsArr: [...prevPost.commentsArr, newComment],
+            }));
+            
             setAddingComment(false);
             setCommentInput('');
         }
-    }
+    };
+
+    const deleteComment = (postId, commentId) => {
+        setAllPosts((prevPosts) =>
+            prevPosts.map((post) => 
+                post.id === postId
+                    ? { ...post, commentsArr: post.commentsArr.filter((comment) => comment.id !== commentId) }
+                    : post
+            )
+        );
+
+        setSelectedPost((prevPost) => ({
+            ...prevPost,
+            commentsArr: prevPost.commentsArr.filter((comment) => comment.id !== commentId),
+        }));
+
+        setShowDeleteButton(null);
+    };
 
     const increaseLikes = (id) => {
         setAllPosts((prevPosts) =>
@@ -240,9 +265,7 @@ const MainContent = () => {
                             {allPosts.map((post) => (
                                 <React.Fragment key={post.id}>
                                     <span className="line"></span>
-                                    <div className="post" onClick={() => {
-                                                setSelectedPost(post);
-                                            }}>
+                                    <div className="post">
                                         <div className="post-header">
                                             <div className="post-header-left">
                                                 <img src={post.photo} alt="User Avatar" />
@@ -407,13 +430,18 @@ const MainContent = () => {
                     </div> : ''}
 
                     {selectedPost.commentsArr.slice().reverse().map((commentObject) => (
-                        <div className='commented-cont'>
+                        <div className='commented-cont' onClick={() => setShowDeleteButton(commentObject.id)}>
                             <div className="commented-cont-top">
                                 <img src={commentObject.photo}/>
                                 <span style={{ color: "#fff" }}>{commentObject.name}</span>
                                 <span style={{ color: "#d2bfb0" }}>{commentObject.posted} hrs ago</span>
                             </div>
                             <p style={{ color: "#fff" }}>{commentObject.comment}</p>
+                            {showDeleteButton === commentObject.id && (
+                                <button className="delete-comment-btn" onClick={() => deleteComment(selectedPost.id, commentObject.id)}>
+                                    Delete
+                                </button>
+                            )}
                         </div>
                     ))}
                 </div>
