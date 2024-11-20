@@ -5,8 +5,6 @@
     box-sizing: border-box;
 }
 
-
-
 nav{
     background-color: #0E1113;
     height: 70px;
@@ -192,7 +190,6 @@ input::placeholder {
     display: flex;
     flex-direction: column;
     width: 280px;
-    // height: 90px;
     padding: 10px 17px;
     justify-content: space-between;
     align-items: center;
@@ -356,19 +353,17 @@ footer{
   }
 
   
-
 .main-content-con{
-    position: absolute;
-    top: 80px;
-    left: 590px;
     display: flex;
     flex-direction: column;
-    width: 1035px;
+    align-items: flex-end;
+    width: 85%;
+    padding-top: 100px;
 }
 
 .img-cont{
     background-image: url('https://styles.redditmedia.com/t5_2xhvq/styles/bannerBackgroundImage_nacao2gsxu321.jpg?format=pjpg&s=22cb4b839bfa82dbcf793ebe3dba7ff28a192427');
-    width: 100%;
+    width: 70%;
     height: 128px;
     border-radius: 8px;
     background-position: center;
@@ -378,7 +373,7 @@ footer{
 }
 
 .create-post-con{
-    width: 100%;
+    width: 70%;
     display: flex;
     justify-content: space-between;
     color: #fff;
@@ -398,7 +393,7 @@ footer{
         border-radius: 50%;
         margin-bottom: 20px;
         position: absolute;
-        top: 78px;
+        top: 200px;
         border: 5px solid #15110F;
     }
 
@@ -457,12 +452,14 @@ footer{
 
 .post-and-info-con{
     display: flex;
+    width: 70%;
     margin-top: 20px;
     gap: 30px;
 }
 
 .post-cont{
     display: flex;
+    width: 72%;
     flex-direction: column;
     gap: 20px;
     user-select: none;
@@ -566,7 +563,7 @@ footer{
 .post{
     display: flex;
     flex-direction: column;
-    width: 700px;
+    width: 100%;
     gap: 10px;
     padding: 10px 12px 10px 12px;
     border-radius: 10px;
@@ -757,7 +754,7 @@ footer{
 
 
 .info-cont{
-    width: 300px;
+    width: 25%;
     height: 2305px;
     background-color: #090706;
     overflow-y: hidden;
@@ -1217,55 +1214,42 @@ footer{
     background-color: #a88d5b;
 }
 
-@media (max-width: 1200px) {
-    .main-content-con,
-    .create-post-con,
-    .post-footer-long,
-    .post-body h3,
-    .post-body p,
-    .post-footer {
-        gap: 5px;
-        padding: 0 5px;
-    }
-
-    .create-post-right {
-        gap: 5px;
-    }
-}
-
-@media (max-width: 992px) {
-    .left-sidebar-con {
-        display: none;
-    }
-
-    .main-content-con {
-        left: 50px;
+@media only screen and (max-width: 1550px){
+    .main-content-con{
         width: 100%;
     }
 }
 
-@media (max-width: 768px) {
-    .info-cont {
+@media only screen and (max-width: 1200px) {
+    .left-sidebar-con{
         display: none;
     }
-
-    .main-content-con {
-        width: calc(100% - 40px);
-        padding: 0 20px;
+    .main-content-con{
+        align-items: center;
+    }
+    .post-and-info-con{
+        width: 100%;
+    }
+    .create-post-con{
+        width: 100%;
+    }
+    .img-cont{
+        width: 100%;
     }
 }
 
-@media (max-width: 576px) {
-    nav .create-post-left span {
+@media only screen and (max-width: 800px){
+    .info-cont{
         display: none;
     }
-
-    nav {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-
-    .search {
+    .post-cont{
         width: 100%;
+    }
+}
+
+@media only screen and (max-width: 725px){
+    .create-post-con{
+        flex-flow: column;
+        gap: 20px;
     }
 }
